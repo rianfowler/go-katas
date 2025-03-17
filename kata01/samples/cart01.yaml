@@ -1,0 +1,18 @@
+items:
+  - id: "A"
+    name: "Apple"
+    priceInCents: 100
+    offerGroupId: "group1"
+  - id: "B"
+    name: "Banana"
+    priceInCents: 50
+    offerGroupId: ""
+
+offerGroups:
+  - groupId: "group1"
+    type: "BuyOneGetOneFree"
+
+cart:
+  items:
+    A: 3
+    B: 2
