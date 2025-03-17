@@ -66,6 +66,20 @@ func LoadConfig(path string) (*Config, error) {
 	return &config, nil
 }
 
+func CalculateTotalPrice(cart Cart, items []Item, offerGroups []OfferGroup) (totalPriceInCents int) {
+	total := 0
+	itemsMap := make(map[string]Item)
+
+	for _, item := range items {
+		itemsMap[item.ID] = item
+	}
+
+	for id, quantity := range cart.Items {
+		total += itemsMap[id].PriceInCents * quantity
+	}
+	return total
+}
+
 func main() {
 	// Load the configuration from a YAML file.
 	config, err := LoadConfig("samples/cart01.yaml")
@@ -77,4 +91,5 @@ func main() {
 	log.Printf("Items: %+v", LoadItems(config))
 	log.Printf("OfferGroups: %+v", LoadOfferGroups(config))
 	log.Printf("Cart: %+v", LoadCart(config))
+	log.Printf("Total price %d", CalculateTotalPrice(LoadCart(config), LoadItems(config), LoadOfferGroups(config)))
 }
