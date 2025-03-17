@@ -1,6 +1,6 @@
 ## Initial design
 
-```mermaidjs
+```mermaid
 classDiagram
     class Item {
       +string id
